@@ -26,6 +26,10 @@ class Transaksi(models.Model):
     id_user = models.ForeignKey(User, on_delete=models.CASCADE)
     jumlah_bayar = models.FloatField()
 
+    def save(self, *args, **kwargs):
+        self.jumlah_bayar = self.jumlah * self.harga
+        super().save(*args,**kwargs)
+        
     def __str__(self):
         return f"No Faktur: {self.no_faktur}"
 

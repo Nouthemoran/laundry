@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>User List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nama</th>
+        <th>Username</th>
+        <th>No. Password</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.id_user }}</td>
+          <td>{{ user.nama_user }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.password }}</td>
+          <td>
+
+            <a href="{% url 'user:update' User.id_user %}">Update</a>
+            <a href="{% url 'user:delete' User.id_user %}">delete</a>
+              
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No user found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

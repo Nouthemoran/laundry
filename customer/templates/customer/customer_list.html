@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Customer List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nama</th>
+        <th>Alamat</th>
+        <th>No. HP</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in customers %}
+        <tr>
+          <td>{{ customer.id_cust }}</td>
+          <td>{{ customer.nama_cust }}</td>
+          <td>{{ customer.alamat }}</td>
+          <td>{{ customer.hp }}</td>
+          <td>
+
+            <a href="{% url 'customer:update' customer.id_cust %}">Update</a>
+            <a href="{% url 'customer:delete' customer.id_cust %}">delete</a>
+              
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No customers found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

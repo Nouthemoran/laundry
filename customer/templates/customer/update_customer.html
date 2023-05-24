@@ -1,0 +1,9 @@
+<h1>Update Customer</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Update</button>
+</form>
+
+<a href="{% url 'customer:read' %}">Cancel</a>

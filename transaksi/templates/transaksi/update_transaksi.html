@@ -1,0 +1,13 @@
+<!-- update_transaksi.html -->
+
+<h1>Edit Transaksi</h1>
+
+<form method="post">
+  {% csrf_token %}
+  
+  {{ form.as_p }}
+  
+  <button type="submit">Simpan</button>
+</form>
+
+<a href="{% url 'transaksi:read' %}">Batal</a>

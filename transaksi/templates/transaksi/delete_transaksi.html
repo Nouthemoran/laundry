@@ -1,0 +1,13 @@
+<!-- delete_transaksi.html -->
+
+<h1>Hapus Transaksi</h1>
+
+<p>Anda yakin ingin menghapus transaksi ini?</p>
+
+<p>No. Faktur: {{ transaksi.no_faktur }}</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Hapus</button>
+  <a href="{% url 'transaksi:read' %}">Batal</a>
+</form>
