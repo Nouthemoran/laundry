@@ -1,8 +1,11 @@
+<!-- customer_list.html -->
 {% extends 'base.html' %}
+
+{% load static %}
 
 {% block content %}
   <h2>Customer List</h2>
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th>ID</th>
@@ -20,10 +23,8 @@
           <td>{{ customer.alamat }}</td>
           <td>{{ customer.hp }}</td>
           <td>
-
-            <a href="{% url 'customer:update' customer.id_cust %}">Update</a>
-            <a href="{% url 'customer:delete' customer.id_cust %}">delete</a>
-              
+            <a href="{% url 'customer:update' customer.id_cust %}" class="btn btn-primary">Update</a>
+            <a href="{% url 'customer:delete' customer.id_cust %}" class="btn btn-danger">Delete</a>
           </td>
         </tr>
       {% empty %}
@@ -33,4 +34,9 @@
       {% endfor %}
     </tbody>
   </table>
+{% endblock %}
+
+<!-- Tambahkan tautan ke file CSS Bootstrap -->
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 {% endblock %}

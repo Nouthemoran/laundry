@@ -1,13 +1,28 @@
 <!-- update_transaksi.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Transaksi</title>
+  <!-- Tambahkan tautan ke file CSS Bootstrap -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Edit Transaksi</h1>
 
-<h1>Edit Transaksi</h1>
+    <form method="post">
+      {% csrf_token %}
+      
+      {{ form.as_p }}
+      
+      <button type="submit" class="btn btn-primary">Simpan</button>
+    </form>
 
-<form method="post">
-  {% csrf_token %}
-  
-  {{ form.as_p }}
-  
-  <button type="submit">Simpan</button>
-</form>
+    <a href="{% url 'transaksi:read' %}" class="btn btn-secondary">Batal</a>
+  </div>
 
-<a href="{% url 'transaksi:read' %}">Batal</a>
+  <!-- Tambahkan skrip JavaScript Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

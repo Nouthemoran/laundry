@@ -1,45 +1,60 @@
 <!-- transaksi_list.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Daftar Transaksi</title>
+  <!-- Tambahkan tautan ke file CSS Bootstrap -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Daftar Transaksi</h1>
 
-<h1>Daftar Transaksi</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>No Faktur</th>
+          <th>Customer</th>
+          <th>Tanggal Masuk</th>
+          <th>Batas Waktu</th>
+          <th>Tanggal Bayar</th>
+          <th>Jumlah</th>
+          <th>Harga</th>
+          <th>Status</th>
+          <th>Dibayar</th>
+          <th>Pegawai</th>
+          <th>Jumlah Bayar</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for transaksi in transaksis %}
+        <tr>
+          <td>{{ transaksi.no_faktur }}</td>
+          <td>{{ transaksi.id_cust }}</td>
+          <td>{{ transaksi.tgl_masuk }}</td>
+          <td>{{ transaksi.batas_waktu }}</td>
+          <td>{{ transaksi.tgl_bayar }}</td>
+          <td>{{ transaksi.jumlah }}</td>
+          <td>{{ transaksi.harga }}</td>
+          <td>{{ transaksi.status }}</td>
+          <td>{{ transaksi.dibayar }}</td>
+          <td>{{ transaksi.id_user }}</td>
+          <td>{{ transaksi.jumlah_bayar }}</td>
+          <td>
+            <a href="{% url 'transaksi:update' transaksi.no_faktur %}" class="btn btn-primary">Ubah</a>
+            <a href="{% url 'transaksi:delete' transaksi.no_faktur %}" class="btn btn-danger">Hapus</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
-<table>
-  <thead>
-    <tr>
-      <th>No Faktur</th>
-      <th>Customer</th>
-      <th>Tanggal Masuk</th>
-      <th>Batas Waktu</th>
-      <th>Tanggal Bayar</th>
-      <th>Jumlah</th>
-      <th>Harga</th>
-      <th>Status</th>
-      <th>Dibayar</th>
-      <th>Pegawai</th>
-      <th>Jumlah Bayar</th>
-      <th>Aksi</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for transaksi in transaksis %}
-    <tr>
-      <td>{{ transaksi.no_faktur }}</td>
-      <td>{{ transaksi.id_cust }}</td>
-      <td>{{ transaksi.tgl_masuk }}</td>
-      <td>{{ transaksi.batas_waktu }}</td>
-      <td>{{ transaksi.tgl_bayar }}</td>
-      <td>{{ transaksi.jumlah }}</td>
-      <td>{{ transaksi.harga }}</td>
-      <td>{{ transaksi.status }}</td>
-      <td>{{ transaksi.dibayar }}</td>
-      <td>{{ transaksi.id_user }}</td>
-      <td>{{ transaksi.jumlah_bayar }}</td>
-      <td>
-        <a href="{% url 'transaksi:update' transaksi.no_faktur %}">Ubah</a>
-        <a href="{% url 'transaksi:delete' transaksi.no_faktur %}">Hapus</a>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    <a href="{% url 'transaksi:create' %}" class="btn btn-success">Tambah Transaksi</a>
+  </div>
 
-<a href="{% url 'transaksi:create' %}">Tambah Transaksi</a>
+  <!-- Tambahkan skrip JavaScript Bootstrap -->
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
