@@ -21,8 +21,8 @@
           <td>{{ user.password }}</td>
           <td>
 
-            <a href="{% url 'user:update' User.id_user %}">Update</a>
-            <a href="{% url 'user:delete' User.id_user %}">delete</a>
+            <a href="{% url 'user:update' user.id_user %}">Update</a>
+            <a href="{% url 'user:delete' user.id_user %}">delete</a>
               
           </td>
         </tr>

@@ -22,5 +22,7 @@ urlpatterns = [
     path('', include('customer.urls')),
     path('', include('user.urls')),
     path('', include('transaksi.urls')),
+    path('', include('myauth.urls'))
+    
 
 ]

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.models import User
+from .models import User
 from .forms import UserForm
 
 def user_list(request):
@@ -16,8 +16,8 @@ def create_user(request):
         form = UserForm()
     return render(request, 'user/create_user.html', {'form': form})
 
-def update_user(request, user_id):
-    user = get_object_or_404(User, id=user_id)
+def update_user(request, id_user):
+    user = get_object_or_404(User, id_user=id_user)
     if request.method == 'POST':
         form = UserForm(request.POST, instance=user)
         if form.is_valid():
@@ -27,8 +27,8 @@ def update_user(request, user_id):
         form = UserForm(instance=user)
     return render(request, 'user/update_user.html', {'form': form})
 
-def delete_user(request, user_id):
-    user = get_object_or_404(User, id=user_id)
+def delete_user(request, id_user):
+    user = get_object_or_404(User, id_user=id_user)
     if request.method == 'POST':
         user.delete()
         return redirect('user:read')

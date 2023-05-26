@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Customer
 from .forms import CustomerForm
 
+
+
 def customer_list(request):
     customers = Customer.objects.all()
     return render(request, 'customer/customer_list.html', {'customers': customers})
