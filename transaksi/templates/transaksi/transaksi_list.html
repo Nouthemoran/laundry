@@ -1,60 +1,274 @@
 <!-- transaksi_list.html -->
 {% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Daftar Transaksi</title>
-  <!-- Tambahkan tautan ke file CSS Bootstrap -->
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.png" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/quill/quill.snow.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/simple-datatables/style.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Updated: Mar 09 2023 with Bootstrap v5.2.3
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
+
 <body>
-  <div class="container">
-    <h1>Daftar Transaksi</h1>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>No Faktur</th>
-          <th>Customer</th>
-          <th>Tanggal Masuk</th>
-          <th>Batas Waktu</th>
-          <th>Tanggal Bayar</th>
-          <th>Jumlah</th>
-          <th>Harga</th>
-          <th>Status</th>
-          <th>Dibayar</th>
-          <th>Pegawai</th>
-          <th>Jumlah Bayar</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for transaksi in transaksis %}
-        <tr>
-          <td>{{ transaksi.no_faktur }}</td>
-          <td>{{ transaksi.id_cust }}</td>
-          <td>{{ transaksi.tgl_masuk }}</td>
-          <td>{{ transaksi.batas_waktu }}</td>
-          <td>{{ transaksi.tgl_bayar }}</td>
-          <td>{{ transaksi.jumlah }}</td>
-          <td>{{ transaksi.harga }}</td>
-          <td>{{ transaksi.status }}</td>
-          <td>{{ transaksi.dibayar }}</td>
-          <td>{{ transaksi.id_user }}</td>
-          <td>{{ transaksi.jumlah_bayar }}</td>
-          <td>
-            <a href="{% url 'transaksi:update' transaksi.no_faktur %}" class="btn btn-primary">Ubah</a>
-            <a href="{% url 'transaksi:delete' transaksi.no_faktur %}" class="btn btn-danger">Hapus</a>
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
 
-    <a href="{% url 'transaksi:create' %}" class="btn btn-success">Tambah Transaksi</a>
-  </div>
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="{% url 'home' %}" class="logo d-flex align-items-center">
+        <img src="{% static 'img/logo.png' %}" alt="">
+        <span class="d-none d-lg-block">HyperLaundry</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
 
-  <!-- Tambahkan skrip JavaScript Bootstrap -->
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+         
+            <span class="d-none d-md-block dropdown-toggle ps-2 ">{{user.username }} </span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>{{ user.username }} </h6>
+              <span>admin</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+          
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <!-- <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-gear"></i>
+                <span>Account Settings</span>
+              </a>
+            </li> -->
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                <i class="bi bi-question-circle"></i>
+                <span>Need Help?</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="index.html">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'transaksi:create' %}">
+              <i class="bi bi-circle"></i><span>Form Transaksi</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{% url 'transaksi:read' %}" class="active">
+              <i class="bi bi-circle"></i><span>Data Tables</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Tables Nav -->
+
+    </ul>
+
+  </aside>End Sidebar
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Data Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">Data</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+
+          <div class="card">
+            <div class="card-body">
+              <a href="{% url 'transaksi:create' %}" class="btn btn-primary">Tambah</a>
+              <h5 class="card-title">Datatables</h5>
+              <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
+
+
+
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th scope="col">No Faktur</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Tanggal Masuk</th>
+                    <th scope="col">Batas Waktu</th>
+                    <th scope="col">Tanggal Bayar</th>
+                    <th scope="col">Jumlah</th>
+                    <th scope="col">Harga</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Dibayar</th>
+                    <th scope="col">Pegawai</th>
+                    <th scope="col">Jumlah Bayar</th>
+                    <th scope="col">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for transaksi in transaksis %}
+                  <tr>
+                    <td class="">{{ transaksi.no_faktur }}</td>
+                    <td class="">{{ transaksi.id_cust }}</td>
+                    <td class="">{{ transaksi.tgl_masuk }}</td>
+                    <td class="">{{ transaksi.batas_waktu }}</td>
+                    <td class="">{{ transaksi.tgl_bayar }}</td>
+                    <td class="">{{ transaksi.jumlah }}</td>
+                    <td class="">{{ transaksi.harga }}</td>
+                    <td class="">{{ transaksi.status }}</td>
+                    <td class="">{{ transaksi.dibayar }}</td>
+                    <td class="">{{ transaksi.id_user }}</td>
+                    <td class="">{{ transaksi.jumlah_bayar }}</td>
+                    <td>
+                      <a href="{% url 'transaksi:update' transaksi.no_faktur %}" class="btn btn-warning">Ubah</a>
+                      <a href="{% url 'transaksi:delete' transaksi.no_faktur %}" class="btn btn-danger">Hapus</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/apexcharts/apexcharts.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/chart.js/chart.umd.js' %}"></script>
+  <script src="{% static 'vendor/echarts/echarts.min.js' %}"></script>
+  <script src="{% static 'vendor/quill/quill.min.js' %}"></script>
+  <script src="{% static 'vendor/simple-datatables/simple-datatables.js' %}"></script>
+  <script src="{% static 'vendor/tinymce/tinymce.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
 </body>
+
 </html>
+
+
+
+
