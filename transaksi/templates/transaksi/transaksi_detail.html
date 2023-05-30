@@ -1,4 +1,4 @@
-<!-- delete_transaksi.html -->
+<!-- transaksi_list.html -->
 {% load static %}
 
 <!DOCTYPE html>
@@ -157,18 +157,17 @@
 
     </ul>
 
-  </aside>
+  </aside>End Sidebar
 
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Delete Transaksi</h1>
+      <h1>Data Tables</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Transaksi</li>
-          <li class="breadcrumb-item">List Transaksi</li>
-          <li class="breadcrumb-item active">Delete Transaksi</li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">Data</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -180,19 +179,33 @@
 
           <div class="card">
             <div class="card-body">
-             
-              <h1 class="pt-4">Hapus Transaksi</h1>
+            
+              <h5 class="card-title">Detail Transaksi</h5>
+              <a class="btn btn-primary " href="{% url 'transaksi:cetak' no_faktur=transaksi.no_faktur %}">Cetak PDF</a>
+            
 
-    <p>Anda yakin ingin menghapus transaksi ini?</p>
 
-    <p>No. Faktur: {{ transaksi.no_faktur }}</p>
+              <!-- Table with stripped rows -->
+             <!-- transaksi_detail.html -->
 
-    <form method="post">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-danger">Hapus</button>
-      <a href="{% url 'transaksi:read' %}" class="btn btn-secondary">Batal</a>
-    </form>
-</div>
+<!-- Menampilkan informasi transaksi -->
+<p><strong>No Faktur:</strong> {{ transaksi.no_faktur }}</p>
+<p><strong>Tanggal Masuk:</strong> {{ transaksi.tgl_masuk }}</p>
+<p><strong>Batas Waktu:</strong> {{ transaksi.batas_waktu }}</p>
+<p><strong>Tanggal Bayar:</strong> {{ transaksi.tgl_bayar }}</p>
+<p><strong>Nama Barang:</strong> {{ transaksi.nama_brg }}</p>
+<p><strong>Jumlah:</strong> {{ transaksi.jumlah }}</p>
+<p><strong>Harga:</strong> {{ transaksi.harga }}</p>
+<p><strong>Status:</strong> {{ transaksi.status }}</p>
+<p><strong>Dibayar:</strong> {{ transaksi.dibayar }}</p>
+<p><strong>ID User:</strong> {{ transaksi.id_user }}</p>
+<p><strong>Jumlah Bayar:</strong> {{ transaksi.jumlah_bayar }}</p>
+
+<!-- Menampilkan informasi pelanggan -->
+<h2>Informasi Pelanggan</h2>
+<p><strong>Nama:</strong> {{ transaksi.id_cust.nama }}</p>
+<p><strong>Alamat:</strong> {{ transaksi.id_cust.alamat }}</p>
+<p><strong>Email:</strong> {{ transaksi.id_cust.email }}</p>
               <!-- End Table with stripped rows -->
 
             </div>
@@ -236,5 +249,7 @@
 </body>
 
 </html>
+
+
 
 

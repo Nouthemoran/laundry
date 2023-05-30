@@ -9,3 +9,8 @@ class User(models.Model):
 
     def __str__(self):
         return self.nama_user
+
+class Meta:
+    permissions = [
+        ("Admin", "Can view user"),
+    ]

@@ -13,8 +13,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{% static 'img/favicon.png" rel="icon">
-  <link href="{% static 'img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -121,12 +121,12 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="index.html">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+      </li>End Dashboard Nav -->
 
 
       <li class="nav-item">
@@ -149,7 +149,7 @@
         <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
             <a href="{% url 'transaksi:read' %}" class="active">
-              <i class="bi bi-circle"></i><span>Data Tables</span>
+              <i class="bi bi-circle"></i><span>Table Transaksi</span>
             </a>
           </li>
         </ul>
@@ -179,7 +179,7 @@
 
           <div class="card">
             <div class="card-body">
-              <a href="{% url 'transaksi:create' %}" class="btn btn-primary">Tambah</a>
+            
               <h5 class="card-title">Datatables</h5>
               <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
 
@@ -194,6 +194,7 @@
                     <th scope="col">Tanggal Masuk</th>
                     <th scope="col">Batas Waktu</th>
                     <th scope="col">Tanggal Bayar</th>
+                    <th scope="col">Nama Barang</th>
                     <th scope="col">Jumlah</th>
                     <th scope="col">Harga</th>
                     <th scope="col">Status</th>
@@ -211,6 +212,7 @@
                     <td class="">{{ transaksi.tgl_masuk }}</td>
                     <td class="">{{ transaksi.batas_waktu }}</td>
                     <td class="">{{ transaksi.tgl_bayar }}</td>
+                    <td class="">{{ transaksi.nama_brg }}</td>
                     <td class="">{{ transaksi.jumlah }}</td>
                     <td class="">{{ transaksi.harga }}</td>
                     <td class="">{{ transaksi.status }}</td>
@@ -220,6 +222,7 @@
                     <td>
                       <a href="{% url 'transaksi:update' transaksi.no_faktur %}" class="btn btn-warning">Ubah</a>
                       <a href="{% url 'transaksi:delete' transaksi.no_faktur %}" class="btn btn-danger">Hapus</a>
+                      <a href="{% url 'transaksi:detail' transaksi.no_faktur %}" class="btn btn-primary">Detail</a>
                     </td>
                   </tr>
                   {% endfor %}
@@ -239,7 +242,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>HyperLaundry</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
       <!-- All the links in the footer should remain intact. -->

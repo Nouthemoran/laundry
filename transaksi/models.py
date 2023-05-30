@@ -9,6 +9,7 @@ class Transaksi(models.Model):
     tgl_masuk = models.DateTimeField()
     batas_waktu = models.DateTimeField()
     tgl_bayar = models.DateTimeField(null=True, blank=True)
+    nama_brg = models.CharField(max_length=250, null=True)
     jumlah = models.IntegerField()
     harga = models.FloatField()
     STATUS_CHOICES = [
